@@ -1,0 +1,84 @@
+---
+title: "BHR_Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BHR_Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(BHR)
+```
+
+# Introduction
+
+The Brain Health Registry (BHR) is an online research registry that allows for the evaluation and longitudinal monitoring of neurological and psychiatric health. Since 2014, over 75,000 U.S. adults have enrolled in the BHR. Participants complete semi-annual self-report questionnaires measuring health, health behavior, and quality of life, in addition to a variety of objective assessments of cognitive funciton and memory. The BHR is comprised of several elective modules, all of which produce distinct datasets to be cleaned, merged, and analyzed as appropriate. The BHR package includes several functions to assist in BHR data cleaning. Functions work to remove duplicate observations and to score assessments of overall health, quality of life, and functioning. When applicable, single-item measures are recoded for scoring validated health assessments. When multiple datasets are available for the same BHR module (i.e., the CogState Module), the package works to merge datasets to one data frame for analysis. This vignette provides a brief example of each function in the BHR package.
+
+# The Hoarding Module  
+
+This function cleanses data from the Brain Health Registry Hoarding Module. The user is asked to input a raw dataframe from the BHR Hoarding Module and to specify (1) the desired output variables and (2) the desired output time point(s) from which data was collected from each participant (i.e., first time point, last timepoint, etc.). The function removes duplicate observations and recodes single items measures of hoarding symptoms and disability on the Hoarding Rating Scale, Self-Report (HRS-SR) and the Activities of Daily Living in Hoarding (ADLH). Standard scoring algorithms are used to calculate total scores on the HRS-SR and the World Health Organization Disability Asssessment Schedule (WHODAS).  
+
+```{r}
+BHR_Hoarding_Clean <- BHR_Hoarding(BHR_Hoarding_Raw, TimePoint = "ALL_HRS", Return="ALL")
+```
+
+In the above code, we enter the raw data from the BHR Hoarding Module into the BHR_Hoarding() function. We specify that we would like the function to return all observations with a completed HRS-SR assessment (i.e., TimePoint = "ALL_HRS") and all relevant columns/variables from the raw data frame. These options are modifiable to the needs of the user. For example, the user may only want data from the first or last timepoint where the HRS-SR was completed for each individual (i.e., TimePoint = "FIRST" and TimePoint = "LAST", respectively). The user may also specify that they would like to return all rows for which a hoarding assessment was collected, regardless of whether the assessment was complete (i.e., TimePoint = "ALL"). Additionally, the user may specify that variables included in the output data be limited to HRS variables only (rather than all columns of the raw dataset [i.e., Return="ALL"]).  
+
+# The Medical Module  
+
+This function cleanses data from the Brain Health Registry Medical Module. The user is asked to input a raw dataframe from the BHR Medical Module and to specify (1) the desired output variables and (2) the desired output time point(s) from which data was collected from each participant. As in the BHR_Hoarding() function, the BHR_Medical() function performs basic data cleaning to remove duplicate observations and to recode single item measures of medical, nerological, and psychiatric health history. Variables representing lifetime psychiatric health history (e.g., LT_MDD, LT_OCD, etc.) are created using information regarding self-report current and past psychiatric diagnosis. Measures of medical, nerological, and psychiatric disease burden are calculated by summing the number of total health conditions endorsed in each repective category.
+
+```{r}
+BHR_Medical_Clean <- BHR_Medical(BHR_Medical_Raw, TimePoint = "FIRST", Return="PSYCH")
+```
+
+In the above code, we enter the raw data from the BHR Medical Module into the BHR_Medical() function. We specify that we would like the function to return only the first observation with complete medical data for each participant (i.e., TimePoint = "FIRST"). Additionally, we limit our output dataframe to variables related to psychiatric health (i.e., Return = "PSYCH"). As in the BHR_Hoarding function, these options are modifiable to the needs of the user. See function documentation for additional information regarding optional arguments.   
+
+# The Mood, Quality of Life, Memtrax, ECog, and Demographics Modules
+
+The Mood, Quality of Life, and ECog Modules follow the same patterns described above. For all functions, the user is asked to input a raw dataframe from the respective BHR Module and to specify to specify the desired output time point(s) from which data was collected from each participant (i.e., first time point,  last timepoint, etc.) and the desired output variables (for all modules except Demographics). The functions remove duplicate observations and calculates total scores on respective measures or assessments using standard scoring algorithms. Assessments in the BHR Mood Module include the Geriatric Depression Scale and the 9-item Patient Health Questionnaire. Assessments in the BHR Quality of Life module include the Medical Outcomes Study 36-item Short Form.  Assessments in the BHR ECog Module include the Everyday Cognition Scale. Though the BHR_Memtrax and BHR_Demographics functions do not include standardized assessments, the BHR_Demographics includes calculations for categorizing participant body mass index (BMI). 
+
+```{r}
+BHR_Mood_Clean <- BHR_Mood(BHR_Mood_Raw, TimePoint = "LAST", Return="PHQ9")
+BHR_QoL_Clean <- BHR_QoL(BHR_QoL_Raw, TimePoint = "ALL", Return = "SF36_Scored")
+BHR_Memtrax_Clean <- BHR_Memtrax(BHR_Memtrax_Raw, TimePoint = "ALL_MEM", Return = "RT_ACC")
+BHR_ECog_Clean <- BHR_ECog(BHR_ECog_Raw, TimePoint = "ALL_ECOG", Return = "SummaryScores")
+BHR_Demo_Clean <- BHR_Demographics(BHR_Demo_Raw, TimePoint = "FIRST")
+```
+
+# The CogState Module  
+
+This function cleanses data from the Brain Health Registry CogState Module. The user is asked to input four raw dataframes from the BHR CogState Module. Dataframes include (1) CogState DET (i.e., the detection test), (2) CogState IDN (i.e., the identification test), (3) CogState OCL (i.e., the one card learning test), and (4) CogState ONB (i.e., the one back test). The function cleans and merges the four dataframes, removing duplicate or repeated observations as described previously. Additionally, as in the functions described above, the user is asked to specify to specify the desired output variables and the desired output time point(s). For each observation, the validity of the CogState assessment is measured using integrity check variables included in the raw datasets.
+
+```{r}
+BHR_CogState_Clean <- BHR_CogState(BHR_DET_Raw, BHR_IDN_Raw, BHR_OCL_Raw, BHR_ONB_Raw, 
+                                   TimePoint = "ALL_COG", Return="SPEED_ACC")
+```
+
+As above,  optional arguments (i.e., TimePoint and Return) are modifiable to the needs of the user. See function documentation for additional information regarding optional arguments.
+
+# The Participants and Profile Modules  
+
+This function cleanses data from the Brain Health Registry Participants and Profile Modules. The user is asked to input two raw dataframes from the BHR, one from the Profile Module and one from the Participants Module. The function performs basic data cleaning to merge the two dataframes and create categorical race and education variables.
+
+```{r}
+BHR_Prof_Particip_Clean <- BHR_Prof_Particip(BHR_Profile_Raw, BHR_Participants_Raw)
+```
+
+# Merging Data
+
+The BHR_Merge() function merges cleaned BHR dataframes by subject ID and time point code. The user is asked to enter a list of BHR dataframes cleaned using the above functions. The function returns a merged BHR dataframe, sorted by subject ID and time point. 
+
+```{r}
+Datasets <- list(Hoarding_Clean, CogState_Clean, Mood_Clean, Part_Profile_Clean)
+
+Merged_Example <- BHR_Merge(Datasets)
+```

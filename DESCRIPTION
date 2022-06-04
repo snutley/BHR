@@ -1,0 +1,18 @@
+Package: BHR
+Title: This Packages Cleanses Data Collected By The Brain Health Registry.
+Version: 0.1.0
+Authors@R: person("Sara", "Nutley", email = "snutley@ufl.edu", role = c("aut", "cre"))
+Description: This package provides functions for cleaning data collected by the Brain Health Registry. Functions work to remove duplicate or repeated observations and score assessments of overall health, quality of life, and functioning. Single-item measures are recoded for scoring validated assessments of health. When multiple datasets are available for the same BHR module (i.e., the CogState Module), the package works to merge datasets to one data frame for analysis. Future work aims to develop functions for merging BHR data and extracting columns relevant to the data analysis of interest. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr,
+	 plyr,
+	 tidyr
+RoxygenNote: 7.1.2
+Depends: R (>= 2.10)
+Suggests: rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
