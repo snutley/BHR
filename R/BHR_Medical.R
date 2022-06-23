@@ -295,6 +295,11 @@ BHR_Medical <- function(dataset, TimePoint = "ALL_MED", Return = "ALL_MED"){
       PTSD_Most = ifelse(sum(!is.na(LT_PTSD)) < 3, NA, 
                          ifelse(sum(!is.na(LT_PTSD)) > 2 &
                                   (sum(na.omit(LT_PTSD) == 1) / sum(!is.na(LT_PTSD))) > 0.5, 1, 0)),
+      
+      #GAD
+      GAD_Most = ifelse(sum(!is.na(LT_GAD)) < 3, NA, 
+                          ifelse(sum(!is.na(LT_GAD)) > 2 &
+                                   (sum(na.omit(LT_GAD) == 1) / sum(!is.na(LT_GAD))) > 0.5, 1, 0)),
       #Panic
       Panic_Most = ifelse(sum(!is.na(LT_Panic)) < 3, NA, 
                           ifelse(sum(!is.na(LT_Panic)) > 2 &
