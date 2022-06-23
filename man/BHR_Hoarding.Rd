@@ -16,8 +16,7 @@ BHR_Hoarding(dataset, TimePoint = "ALL_HRS", Return = "HRS")
 (4) "ALL": For each participant, return all time points with hoarding data, regardless of whether the HRS-SR was completed at the given time point.}
 
 \item{Return}{Variables to be included in the output dataframe. Options include:
-(1) "HRS": Output dataframe includes variables HRS-SR single-item and total scores only
-(2) "ALL": Output dataframe includes all hoarding variables, including HRS-SR and WHODAS total scores}
+(1) "HRS": Output dataframe includes variables HRS-SR single-item and total scores only}
 }
 \value{
 The function returns a dataset containing some or all of the following variables (depending on Return parameter). Only variables recoded or created within the function are described in detail.
@@ -32,6 +31,7 @@ The function returns a dataset containing some or all of the following variables
  \item \code{HRS_Distress:} {To what extent do you experience emotional distress because of clutter, difficulty discarding or problems with buying or acquiring things? Recoded using a scale of 0 to 8, with higher scores indicating greater severity}
  \item \code{HRS_Impairment:} {To what extent do you experience impairment in your life (daily routine, job/school, social activities, family activities, financial difficulties) because of clutter, difficulty discarding, or problems with buying or acquiring things? Recoded using a scale of 0 to 8, with higher scores indicating greater severity}
  \item \code{HRS_Total:} {Total score on the Hoarding Rating Scale, Self-Report. Scores range from 0 to 40, with high schores indicating greater hoarding symtomatology. In the BHR, cutoffs of 10 and 14 have been used for identifying subsclinical and clinically relevant hoarding, respectively}
+ \item \code{HRS_Class:} {Hoarding classification using HRS total scores. Coded as 0=No Hoarding (0-4), 1=Minimal Hoarding (5-9), 2=Subclinical Hoarding (10-13), 3=Clinically Relevant Hoarding (14-40)}
  \item \code{QID11.1:} {ADLH item 1: Use stove. Scores of 6 (NA) are recoded as NA}
  \item \code{QID11.2:} {ADLH item 2: Use kitchen counters. Scores of 6 (NA) are recoded as NA}
  \item \code{QID11.3:} {ADLH item 3: Eat at table. Scores of 6 (NA) are recoded as NA}

@@ -62,42 +62,55 @@ The function returns a dataset containing some or all of the following variables
  \item \code{QID28.1.1} {Current major depressive disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.1} {Past major depressive disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_MDD} {Lifetime history of major depressive disorder. Coded as No=0, Yes=1}
+ \item \code{MDD_Most} {Major depressive disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.3} {Current specific phobia or social phobia. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.3} {Past specific phobia or social phobia. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_Phobia} {Lifetime history of specific phobia or social phobia. Coded as No=0, Yes=1}
+ \item \code{Phobia_Most} {Phobia endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.4} {Current obsessive compulsive disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.4} {Past obsessive compulsive disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_OCD} {Lifetime history of obsessive compulsive disorder. Coded as No=0, Yes=1}
+ \item \code{OCD_Most} {Obsessive compulsive disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.5} {Current hoarding disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.5} {Past hoarding disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_HD} {Lifetime history of hoarding disorder. Coded as No=0, Yes=1}
+ \item \code{HD_Most} {Hoarding disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.6} {Current attention deficit/hyperactivity disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.6} {Past attention deficit/hyperactivity disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_ADHD} {Lifetime history of attention deficit/hyperactivity disorder. Coded as No=0, Yes=1}
+ \item \code{ADHD_Most} {Attention deficit/hyperactivity disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.8} {Current post-traumatic stress disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.8} {Past post-traumatic stress disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_PTSD} {Lifetime history of post-traumatic stress disorder. Coded as No=0, Yes=1}
+ \item \code{PTSD_Most} {Post-traumatic stress disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.9} {Current generalized anxiety disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.9} {Past generalized anxiety disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_GAD} {Lifetime history of generalized anxiety disorder. Coded as No=0, Yes=1}
+ \item \code{GAD_Most} {Generalized anxiety disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.10} {Current panic disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.10} {Past panic disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_Panic} {Lifetime history of panic disorder. Coded as No=0, Yes=1}
+ \item \code{Panic_Most} {Panic disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.11} {Current bipolar disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.11} {Past bipolar disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_BPD} {Lifetime history of bipolar disorder. Coded as No=0, Yes=1}
+ \item \code{BPD_Most} {Bipolar disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.12} {Current autism spectrum disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.12} {Past autism spectrum disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_ASM} {Lifetime history of autism spectrum disorder. Coded as No=0, Yes=1}
+ \item \code{ASM_Most} {Autism spectrum disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.13} {Current schizophrenia. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.13} {Past schizophrenia. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
- \item \code{LT_SCZ} {Lifetime history of schizophrenia.. Coded as No=0, Yes=1}
+ \item \code{LT_SCZ} {Lifetime history of schizophrenia. Coded as No=0, Yes=1}
+ \item \code{SCZ_Most} {Schizophrenia endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.14} {Current eating disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.14} {Past eating disorder. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_ED} {Lifetime history of eating disorder. Coded as No=0, Yes=1}
+ \item \code{ED_Most} {Eating disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID28.1.15} {Current psychosis. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{QID28.2.15} {Past psychosis. Recoded as No=0, Yes=1 (Added to Medical Module in July 2014)}
  \item \code{LT_Psychosis} {Lifetime history of psychosis. Coded as No=0, Yes=1}
+ \item \code{Psychosis_Most} {Psychosis endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{QID9} {Lifetime history of alcohol abuse. Recoded as No=0, Yes=1, Prefer Not to Say = 99}
  \item \code{QID13.TEXT} {See BHR Codebook}
  \item \code{QID15.TEXT} {See BHR Codebook}
@@ -110,6 +123,7 @@ The function returns a dataset containing some or all of the following variables
  \item \code{PsychChild} {Lifetime history of any psychiatric disorder of childhood (i.e., attention deficit/hyperactivity disorder or autism spectrum disorder). Coded as No=0, Yes=1}
  \item \code{OCRD} {Lifetime history of any obsessive compulsive related disorder (i.e., obsessive compulsive disorder or eating disorder). Coded as No=0, Yes=1}
  \item \code{SUD}  {Lifetime history of any substance use disorder (i.e., alcohol abuse or drug abuse). Coded as No=0, Yes=1}
+ \item \code{SUD_Most} {Substance use disorder endorsed at most timepoints. Coded as No=0, Yes=1. NA if less than 3 timepoints completed}
  \item \code{Psych_Burden} {Number of psychiatric health conditions, including major depressive disorder, specific phobia or social phobia, obsessive compulsive disorder, hoarding disorder, attention deficit/hyperactivity disorder, post-traumatic stress disorder, generalized anxiety disorder, panic disorder, bipolar disorder, autism spectrum disorder, schizophrenia, eating disorder, psychosis, substance use (i.e., alcohol or drug abuse). Values range from 0 to 14, with higher values indicating a greater number of psychiatric conditions}
  \item \code{QID20} {Lifetime history of smoking tobacco. Recoded as No=0, Yes=1, Prefer Not to Say = 99}
  \item \code{QID21.TEXT} {See BHR Codebook}
