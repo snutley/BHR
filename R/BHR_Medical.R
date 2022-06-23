@@ -376,7 +376,7 @@ BHR_Medical <- function(dataset, TimePoint = "ALL_MED", Return = "ALL_MED"){
              QID28.2.11, LT_BPD, BPD_Most, QID28.1.12, QID28.2.12, LT_ASM, ASM_Most, QID28.1.13, 
              QID28.2.13, LT_SCZ, SCZ_Most, QID28.1.14, QID28.2.14, LT_ED, ED_Most, QID28.1.15, 
              QID28.2.15, LT_Psychosis, Psychosis_Most, QID9, QID13.TEXT, QID15.TEXT, QID16.TEXT, 
-             QID17, QID18.TEXT, QID19.TEXT, ANX, SMI, PsychChild, OCRD, SUD, SUD_Most
+             QID17, QID18.TEXT, QID19.TEXT, ANX, SMI, PsychChild, OCRD, SUD, SUD_Most,
              Psych_Burden, QID20, QID21.TEXT, QID22.TEXT, QID23.TEXT) %>%
       rename(DaysAfterBaseline.Med = DaysAfterBaseline,
              StatusDateTime.Med = StatusDateTime)}
