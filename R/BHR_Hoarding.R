@@ -12,7 +12,7 @@
 #'
 #' @param Return Variables to be included in the output dataframe. Options include:
 #' (1) "HRS": Output dataframe includes variables HRS-SR single-item and total scores only
-#' (2) "ALL": Output dataframe includes all hoarding variables, including HRS-SR and WHODAS total scores
+#c' (2) "ALL": Output dataframe includes all hoarding variables, including HRS-SR and WHODAS total scores
 #'
 #' @return The function returns a dataset containing some or all of the following variables (depending on Return parameter). Only variables recoded or created within the function are described in detail.
 #' \itemize{
@@ -26,6 +26,7 @@
 #'  \item \code{HRS_Distress:} {To what extent do you experience emotional distress because of clutter, difficulty discarding or problems with buying or acquiring things? Recoded using a scale of 0 to 8, with higher scores indicating greater severity}
 #'  \item \code{HRS_Impairment:} {To what extent do you experience impairment in your life (daily routine, job/school, social activities, family activities, financial difficulties) because of clutter, difficulty discarding, or problems with buying or acquiring things? Recoded using a scale of 0 to 8, with higher scores indicating greater severity}
 #'  \item \code{HRS_Total:} {Total score on the Hoarding Rating Scale, Self-Report. Scores range from 0 to 40, with high schores indicating greater hoarding symtomatology. In the BHR, cutoffs of 10 and 14 have been used for identifying subsclinical and clinically relevant hoarding, respectively}
+#'  \item \code{HRS_Class:} {Hoarding classification using HRS total scores. Coded as 0=No Hoarding (0-4), 1=Minimal Hoarding (5-9), 2=Subclinical Hoarding (10-13), 3=Clinically Relevant Hoarding (14-40)}
 #'  \item \code{QID11.1:} {ADLH item 1: Use stove. Scores of 6 (NA) are recoded as NA}
 #'  \item \code{QID11.2:} {ADLH item 2: Use kitchen counters. Scores of 6 (NA) are recoded as NA}
 #'  \item \code{QID11.3:} {ADLH item 3: Eat at table. Scores of 6 (NA) are recoded as NA}
@@ -210,6 +211,13 @@ BHR_Hoarding <- function(dataset, TimePoint = "ALL_HRS", Return = "HRS"){
   dataset$WHODAS_Total <- rowMeans(dataset[c("QID44.1", "QID44.2", "QID45.1", "QID45.2",
                                              "QID46.1", "QID46.2", "QID47.1", "QID47.2",
                                              "QID48.1", "QID48.2", "QID49.1", "QID49.2")])
+  
+  #Hoarding group (Single timepoint classification and "most" classification)
+  dataset$HRS_Class <- NA
+  dataset$HRS_Class[dataset$HRS_Total < 5] <- 0
+  dataset$HRS_Class[between(dataset$HRS_Total, 5, 9)] <- 1
+  dataset$HRS_Class[between(dataset$HRS_Total, 10, 13)] <- 2
+  dataset$HRS_Class[dataset$HRS_Total > 13] <- 3
 
   #Requests
   #Number of data points
@@ -241,20 +249,22 @@ BHR_Hoarding <- function(dataset, TimePoint = "ALL_HRS", Return = "HRS"){
   if (Return == "HRS") {
     Output <- dataset %>%
       select(SubjectCode, TimepointCode, DaysAfterBaseline, StatusDateTime,
-                    HRS_Clutter, HRS_Discard, HRS_Acquire, HRS_Distress, HRS_Impairment, HRS_Total) %>%
+                    HRS_Clutter, HRS_Discard, HRS_Acquire, HRS_Distress, HRS_Impairment, HRS_Total,
+                    HRS_Class) %>%
       rename(DaysAfterBaseline.Hoarding = DaysAfterBaseline,
              StatusDateTime.Hoarding = StatusDateTime)}
 
   else if (Return == "ALL") {Output <- dataset %>%
     select(SubjectCode, TimepointCode, DaysAfterBaseline, StatusDateTime, HRS_Clutter,
-                  HRS_Discard, HRS_Acquire, HRS_Distress,HRS_Impairment, HRS_Total, QID11.1, QID11.2,
-                  QID11.3, QID11.4, QID11.5, QID11.6, QID11.7, QID14.1, QID14.2, QID14.3, QID14.4,
-                  QID14.5, QID44.1, QID44.2, QID45.1, QID45.2, QID46.1, QID46.2, QID47.1, QID47.2,
-                  QID48.1, QID48.2, QID49.1, QID49.2, WHODAS_Total, QID49.4, QID50, QID51, QID52,
-                  QID39, QID32,  QID33.1, QID33.2, QID33.3, QID33.4, QID33.5, QID33.6, QID33.7,
-                  QID33.7.TEXT, QID34, QID35, QID36, QID37, QID15.TEXT, QID16.TEXT, QID20, QID21, QID22,
-                  QID23, QID24, QID25, QID26.1, QID26.2, QID26.3, QID26.4, QID26.5, QID26.6, QID26.7,
-                  QID26.8, QID27, QID41, QID28, QID29, QID42) %>%
+                  HRS_Discard, HRS_Acquire, HRS_Distress,HRS_Impairment, HRS_Total, 
+                  HRS_Class, QID11.1, QID11.2, QID11.3, QID11.4, QID11.5, QID11.6, 
+                  QID11.7, QID14.1, QID14.2, QID14.3, QID14.4, QID14.5, QID44.1, QID44.2, 
+                  QID45.1, QID45.2, QID46.1, QID46.2, QID47.1, QID47.2, QID48.1, QID48.2, 
+                  QID49.1, QID49.2, WHODAS_Total, QID49.4, QID50, QID51, QID52, QID39, QID32,  
+                  QID33.1, QID33.2, QID33.3, QID33.4, QID33.5, QID33.6, QID33.7, QID33.7.TEXT, 
+                  QID34, QID35, QID36, QID37, QID15.TEXT, QID16.TEXT, QID20, QID21, QID22,
+                  QID23, QID24, QID25, QID26.1, QID26.2, QID26.3, QID26.4, QID26.5, QID26.6,
+                  QID26.7, QID26.8, QID27, QID41, QID28, QID29, QID42) %>%
     rename(DaysAfterBaseline.Hoarding = DaysAfterBaseline,
            StatusDateTime.Hoarding = StatusDateTime)}
 
