@@ -208,7 +208,7 @@ BHR_Hoarding <- function(dataset, TimePoint = "ALL_HRS", Return = "HRS"){
   dataset$HRS_Total <- rowSums(dataset[c("HRS_Clutter", "HRS_Discard", "HRS_Acquire",
                                          "HRS_Distress", "HRS_Impairment")])
 
-  dataset$WHODAS_Total <- rowMeans(dataset[c("QID44.1", "QID44.2", "QID45.1", "QID45.2",
+  dataset$WHODAS_Total <- rowSums(dataset[c("QID44.1", "QID44.2", "QID45.1", "QID45.2",
                                              "QID46.1", "QID46.2", "QID47.1", "QID47.2",
                                              "QID48.1", "QID48.2", "QID49.1", "QID49.2")])
   
