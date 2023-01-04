@@ -190,7 +190,10 @@ BHR_Sleep <- function(dataset, TimePoint = "ALL_PSQI", Return = "PSQI"){
 
   dataset$Sleep_Medication <- dataset$QID97 - 1
 
-  dataset$Daytime_Fatigue <- (dataset$QID98 - 1) + (dataset$QID145 - 1)
+  dataset$Daytime_Fatigue <- case_when(((dataset$QID98 - 1) + (dataset$QID145 - 1)) == 0 ~ 0,
+                                       between(((dataset$QID98 - 1) + (dataset$QID145 - 1)), 1, 2) ~ 1,
+                                       between(((dataset$QID98 - 1) + (dataset$QID145 - 1)), 3, 4) ~ 2,
+                                       between(((dataset$QID98 - 1) + (dataset$QID145 - 1)), 5, 6) ~ 3)
 
   dataset$PSQI_Total <- rowSums(dataset[c("Sleep_Quality", "Sleep_Latency", "Sleep_Duration",
                                                   "Sleep_Efficiency", "Sleep_Disturbance", "Sleep_Medication",
