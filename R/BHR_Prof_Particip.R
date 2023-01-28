@@ -78,7 +78,7 @@ BHR_Prof_Particip <- function(Profile, Participants){
     select(SubjectCode, IsSubject, IsStudyPartner, BaselineDate, Age_Baseline, Gender,
            Race_Categorical,  Race_AfricanAmerican, Race_Asian, Race_Caucasian, Race_NativeAmerican,
            Race_PacificIslander, Race_Other, Race_DeclinedToState, Ethnicity, Edu_Categorical,
-           YearsEducationUS, Handedness, Deceased)
+           YearsEducationUS, YearsEducationUS_Converted, Handedness, Deceased)
 
   Output
 
