@@ -332,14 +332,17 @@ BHR_Medical <- function(dataset, TimePoint = "ALL_MED", Return = "ALL_MED"){
   #Create Disease burden variables
   dataset$Med_Burden <- rowSums(dataset[c("QID1.3", "QID1.6", "QID1.7", "QID1.8", "QID1.9", "QID1.10",
                                           "QID1.16", "QID1.20", "QID1.17", "QID1.14",
-                                          "QID1.18", "QID2", "QID4", "QID6")], na.rm = TRUE)
+                                          "QID1.18", "QID2", "QID4", "QID6")] #, na.rm = TRUE
+                               )
   
   dataset$Neuro_Burden <- rowSums(dataset[c("QID1.1", "QID1.2", "QID1.24", "QID1.4", "QID1.12", "QID1.13",
-                                            "QID1.5", "QID1.22", "QID1.23", "QID1.21", "QID1.19")], na.rm = TRUE)
+                                            "QID1.5", "QID1.22", "QID1.23", "QID1.21", "QID1.19")] #, na.rm = TRUE
+                                 )
   
   dataset$Psych_Burden <- rowSums(dataset[c("LT_MDD", "LT_Phobia", "LT_OCD", "LT_HD", "LT_ADHD", "LT_PTSD",
                                             "LT_GAD", "LT_Panic", "LT_BPD", "LT_ASM", "LT_SCZ", "LT_ED",
-                                            "LT_Psychosis", "SUD")], na.rm = TRUE)
+                                            "LT_Psychosis", "SUD")] #, na.rm = TRUE
+                                 )
   
   #Requests
   #Number of data points
